@@ -1,35 +1,6 @@
+print("=== STARTING ===")
 import os
-import logging
-from dotenv import load_dotenv
-from kiteconnect import KiteConnect
-from flask import Flask  # Web endpoint-க்கு optional
-
-load_dotenv()
-app = Flask(__name__)
-
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
-logger = logging.getLogger(__name__)
-
-API_KEY = os.getenv("API_KEY")
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
-
-kite = KiteConnect(api_key=API_KEY)
-kite.set_access_token(ACCESS_TOKEN)
-
-@app.route('/')
-def home():
-    return "Trading bot ready!"
-
-@app.route('/nifty')
-def nifty_price():
-    try:
-        quote = kite.quote("NSE:NIFTY 50")
-        price = quote["NSE:NIFTY 50"]["last_price"]
-        logger.info(f"Nifty: {price}")
-        return f"Nifty 50: {price}"
-    except Exception as e:
-        logger.error(f"Error: {e}")
-        return "Error fetching price"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+print("OS imported")
+API_KEY = os.getenv("API_KEY", "test")
+print(f"API_KEY loaded: {API_KEY[:5]}...")
+print("=== SUCCESS ===")
