@@ -1,6 +1,0 @@
-print("=== STARTING ===")
-import os
-print("OS imported")
-API_KEY = os.getenv("API_KEY", "test")
-print(f"API_KEY loaded: {API_KEY[:5]}...")
-print("=== SUCCESS ===")
